@@ -1,84 +1,168 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
-/* General Styles */
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
+      /* General Styles */
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        padding: 10px 20px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      /* Logo */
+      .logo img {
+        height: 40px; /* Adjust height */
+        margin-left: -250px; /* Optional spacing */
+      }
+      /* Logo */
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #78a864; /* Vaultly green */
+        margin-left: 50px;
+      }
+      /* Navigation */
+      .nav-links {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: black;
+        margin: 0 15px;
+        font-size: 1rem;
+        font-weight: 400;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #78a864; /* Hover effect */
+      }
+
+      /* Buttons */
+      .auth-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .auth-buttons .login-btn {
+        background-color: white;
+        color: #78a864;
+        border: 2px solid #78a864;
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .auth-buttons .login-btn:hover {
+        background-color: #78a864;
+        color: white;
+      }
+
+      .auth-buttons .signup-btn {
+        background-color: #78a864;
+        color: white;
+        border: none;
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .auth-buttons .signup-btn:hover {
+        background-color: #9ad97f; /* Slightly lighter green */
+      }
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Bottom Section */
+        .bottom-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px;
+            background-color: #f9f9f9; /* Light background */
+            height: 60vh; /* Adjust height as needed */
+        }
+
+        /* Left Content */
+        .slogan-container {
+            max-width: 50%;
+        }
+
+        .slogan-container h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            color: black;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+        }
+
+        .slogan-container .get-started-btn {
+            display: inline-block;
+            background-color: #9ad97f;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 30px;
+            border-radius: 50px; /* Soft oval shape */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .slogan-container .get-started-btn:hover {
+            background-color: #78a864; /* Slightly darker green */
+        }
+
+        /* Right Image Placeholder */
+        .image-container {
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .image-container img {
+           max-width: 100%; /* Ensures it doesn't overflow its container */
+            max-height: 100%; /* Maintains aspect ratio */
+           width: 80%; /* Adjust this to make the image larger */
+            height: 1000000px; /* Maintains the aspect ratio */
+            object-fit: contain; /* Keeps the entire image visible */
+            margin-left: 100px;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  padding: 10px 20px;
-  border-bottom: 1px solid #ddd;
-}
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .bottom-section {
+                flex-direction: column;
+                text-align: center;
+                height: auto;
+            }
 
-/* Logo */
-.logo { 
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #78a864; /* Vaultly green */
-  margin-left: 100px;
-}
+            .slogan-container,
+            .image-container {
+                max-width: 100%;
+            }
 
-/* Navigation */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 100px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: black;
-  margin: 0 15px;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #78a864; /* Hover effect */
-}
-
-/* Buttons */
-.auth-buttons {
-  display: flex;
-  gap: 25px;
-  margin-right: 40px;
-}
-
-.auth-buttons .login-btn {
-  background-color: white;
-  color: #78a864;
-  border: 2px solid #78a864;
-  padding: 10px 35px;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.auth-buttons .login-btn:hover {
-  background-color: #78a864;
-  color: white;
-}
-
-.auth-buttons .signup-btn {
-  background-color: #78a864;
-  color: white;
-  border: none;
-  padding: 10px 35px;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.auth-buttons .signup-btn:hover {
-  background-color: #9ad97f; /* Slightly lighter green */
-}
+            .slogan-container h1 {
+                font-size: 2.5rem;
+            }
+        }
