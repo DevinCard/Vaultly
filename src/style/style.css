@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url(" https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
       /* General Styles */
       body {
@@ -11,8 +11,8 @@
         justify-content: space-between;
         align-items: center;
         background-color: white;
-        padding: 10px 20px;
-        border-bottom: 1px solid #ddd;
+        padding: 15px 20px;
+        border-bottom: 1.5px solid #ddd;
       }
 
       /* Logo */
@@ -33,6 +33,9 @@
       .nav-links {
         display: flex;
         align-items: center;
+        justify-content: center;
+        flex: 1;
+        gap: 100px;
       }
 
       .nav-links a {
@@ -41,6 +44,7 @@
         margin: 0 15px;
         font-size: 1rem;
         font-weight: 400;
+        line-height: 1;
         transition: color 0.3s ease;
       }
 
@@ -58,8 +62,8 @@
         background-color: white;
         color: #78a864;
         border: 2px solid #78a864;
-        padding: 5px 15px;
-        border-radius: 5px;
+        padding: 5px 25px;
+        border-radius: 10px;
         font-size: 0.9rem;
         font-weight: 600;
         cursor: pointer;
@@ -72,11 +76,12 @@
       }
 
       .auth-buttons .signup-btn {
+        text-decoration: none;
         background-color: #78a864;
         color: white;
         border: none;
-        padding: 5px 15px;
-        border-radius: 5px;
+        padding: 5px 25px;
+        border-radius: 10px;
         font-size: 0.9rem;
         font-weight: 600;
         cursor: pointer;
@@ -105,6 +110,8 @@
         /* Left Content */
         .slogan-container {
             max-width: 50%;
+            position: relative;
+            left: 150px;
         }
 
         .slogan-container h1 {
@@ -148,7 +155,7 @@
            width: 80%; /* Adjust this to make the image larger */
             height: 1000000px; /* Maintains the aspect ratio */
             object-fit: contain; /* Keeps the entire image visible */
-            margin-left: 100px;
+            margin-left: 200px;
 }
 
         /* Responsive Design */
