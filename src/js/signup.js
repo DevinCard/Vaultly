@@ -19,13 +19,47 @@ document.addEventListener("DOMContentLoaded", () => {
         // Check if passwords match + error
         passwordField.classList.remove("error");
         confirmPasswordField.classList.remove("error");
-        nonMatchingPasswords.style.display = "none"; 
+        nonMatchingPasswords.style.display = "none";
+        passwordField.setCustomValidity("");
+        confirmPasswordField.setCustomValidity("");
 
+        let hasError = false;
+
+        if (firstName.length < 2 || firstName.length > 50) {
+            alert("First name must be between 2 and 50 characters.");
+            hasError = true;
+        }
+
+        if (lastName.length < 2 || lastName.length > 50) {
+            alert("Last name must be between 2 and 50 characters.")
+            hasError = true;
+        }
+
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(emailAddress)) {
+            alert("Please enter a valid email address.");
+            hasError = true;
+        }
+
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            passwordField.classList.add("error");
+            passwordField.setCustomValidity("Password must contain at least 8 characters, 1 number, and 1 special character.");
+            passwordField.reportValidity();
+            hasError = true;
+        }
         if (password !== confirmPassword) {
             nonMatchingPasswords.style.display = "inline"; 
-            passwordField.classList.add("error");
+            passwordField.classList.add("error")
             confirmPasswordField.classList.add("error");
-        } else {
+            confirmPasswordField.setCustomValidity("Passwords do not match.");
+            passwordField.setCustomValidity("Passwords do not match.");
+            confirmPasswordField.reportValidity();
+            hasError = true;
+            
+        if (hasError) {
+            return;
+        }
 
      // Log values in console (FOR TEST, DO NOT TOUCH)
         console.log("First Name:", firstName);
