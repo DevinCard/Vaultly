@@ -1,75 +1,83 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Signup.js is loaded!");
 
-    // Select form
     const signupForm = document.getElementById("signup-form");
-    const passwordField = document.getElementById("password");
-    const confirmPasswordField = document.getElementById("confirm-password");
-    const nonMatchingPasswords = document.getElementById("non-matching-passwords");
-
     signupForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const firstName = document.getElementById("first-name").value;
-        const lastName = document.getElementById("last-name").value;
-        const emailAddress = document.getElementById("email-address").value;
-        const password = passwordField.value;  
-        const confirmPassword = confirmPasswordField.value;  
-
-        // Check if passwords match + error
-        passwordField.classList.remove("error");
-        confirmPasswordField.classList.remove("error");
-        nonMatchingPasswords.style.display = "none";
-        passwordField.setCustomValidity("");
-        confirmPasswordField.setCustomValidity("");
-
         let hasError = false;
 
-        if (firstName.length < 2 || firstName.length > 50) {
-            alert("First name must be between 2 and 50 characters.");
+        document.querySelectorAll(".error-message").forEach((error) => {
+            error.textContent = "";
+            error.style.display = "none";
+        });
+
+        document.querySelectorAll("input").forEach((input) => {
+            input.setCustomValidity(""); 
+        });
+
+        const firstNameField = document.getElementById("first-name");
+        const firstNameError = document.getElementById('first-name-error');
+        const firstNameValue = firstNameField.value.trim();
+        
+        if (firstNameField.value.trim().length < 2) {
             hasError = true;
+            firstNameError.textContent = "First name must be at least 2 characters.";
+            firstNameError.style.display = "block";
+            firstNameField.setCustomValidity("First name must be at least 2 characters.");
         }
 
-        if (lastName.length < 2 || lastName.length > 50) {
-            alert("Last name must be between 2 and 50 characters.")
+        const lastNameField = document.getElementById("last-name");
+        const lastNameError = document.getElementById("last-name-error");
+        if (lastNameField.value.trim().length < 2) {
             hasError = true;
+            lastNameError.textContent = "Last name must be at least 2 characters.";
+            lastNameError.style.display = "block";
+            lastNameField.setCustomValidity("Last name must be at least 2 characters.");
         }
 
+        const emailAddressField = document.getElementById("email-address");
+        const emailAddressError = document.getElementById("email-error");
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(emailAddress)) {
-            alert("Please enter a valid email address.");
+        if (!emailRegex.test(emailAddressField.value.trim())) {
             hasError = true;
+            emailAddressError.textContent = "Please enter a valid email address.";
+            emailAddressError.style.display = "block";
+            emailAddressField.setCustomValidity("Please enter a valid email address.");
         }
 
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
-        if (!passwordRegex.test(password)) {
-            passwordField.classList.add("error");
-            passwordField.setCustomValidity("Password must contain at least 8 characters, 1 number, and 1 special character.");
-            passwordField.reportValidity();
+        const passwordField = document.getElementById("password");
+        const passwordError = document.getElementById("password-error");
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]+$/;
+        if (!passwordRegex.test(passwordField.value)) {
             hasError = true;
+            passwordError.textContent = "Password must include one letter, one number, and one special character.";
+            passwordError.style.display = "block";
+            passwordField.setCustomValidity("Password must include one letter, one number, and one special character.");
         }
-        if (password !== confirmPassword) {
-            nonMatchingPasswords.style.display = "inline"; 
-            passwordField.classList.add("error")
-            confirmPasswordField.classList.add("error");
-            confirmPasswordField.setCustomValidity("Passwords do not match.");
-            passwordField.setCustomValidity("Passwords do not match.");
-            confirmPasswordField.reportValidity();
+
+        // Confirm password validation
+        const confirmPasswordField = document.getElementById("confirm-password");
+        const confirmPasswordError = document.getElementById("confirm-password-error");
+        if (passwordField.value !== confirmPasswordField.value) {
             hasError = true;
-            
+            confirmPasswordError.textContent = "Passwords do not match.";
+            confirmPasswordError.style.display = "block";
+            confirmPasswordField.setCustomValidity("Passwords do not match.");
+        }
+
+        // If there are errors, stop submission
         if (hasError) {
             return;
         }
 
-     // Log values in console (FOR TEST, DO NOT TOUCH)
-        console.log("First Name:", firstName);
-        console.log("Last Name:", lastName);
-        console.log("Email:", emailAddress);
-        console.log("Password:", password);
+        // Log values in console (for testing purposes, remove after final testing)
+        console.log("First Name:", firstNameField.value.trim());
+        console.log("Last Name:", lastNameField.value.trim());
+        console.log("Email:", emailAddressField.value.trim());
+        console.log("Password:", passwordField.value.trim());
 
-        // Display success message or handle further
+        // Display success message
         alert("Sign-up successful!");
-        }
-
     });
 });
