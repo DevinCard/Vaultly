@@ -3,59 +3,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Select form
     const signupForm = document.getElementById("signup-form");
-
-    if (!signupForm) {
-        console.log("Signup form not found in DOM!");
-        return;
-    }
-    
-    // Add event listener for form submission
-     signupForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-    const firstName = document.getElementById("first-name").value;
-    const lastName = document.getElementById("last-name").value;
-    const emailAddress = document.getElementById("email-address").value;
-    const passwordValue = password.value;
-    const confirmPasswordValue = confirmPassword.value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirm-password").value;
+    const passwordField = document.getElementById("password");
+    const confirmPasswordField = document.getElementById("confirm-password");
     const nonMatchingPasswords = document.getElementById("non-matching-passwords");
 
-    if (!signupForm || !password || !confirmPassword || !nonMatchingPasswords) {
-        console.error("One or more elements not found in the DOM!");
-        return;
-    }
+    signupForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-        // Get value from input fields on signup form
-        
-        
+        const firstName = document.getElementById("first-name").value;
+        const lastName = document.getElementById("last-name").value;
+        const emailAddress = document.getElementById("email-address").value;
+        const password = passwordField.value;  
+        const confirmPassword = confirmPasswordField.value;  
 
+        // Check if passwords match + error
+        passwordField.classList.remove("error");
+        confirmPasswordField.classList.remove("error");
+        nonMatchingPasswords.style.display = "none"; 
 
-    // Check if passwords match + error
+        if (password !== confirmPassword) {
+            nonMatchingPasswords.style.display = "inline"; 
+            passwordField.classList.add("error");
+            confirmPasswordField.classList.add("error");
+        } else {
 
-    password.style.borderColor = "";
-    confirmPassword.style.borderColor = "";
-    nonMatchingPasswords.style.borderColor = "none";
+     // Log values in console (FOR TEST, DO NOT TOUCH)
+        console.log("First Name:", firstName);
+        console.log("Last Name:", lastName);
+        console.log("Email:", emailAddress);
+        console.log("Password:", password);
 
-    if (passwordValue !== confirmPasswordValue.value) {
-        nonMatchingPasswords.style.display = "inline";
-        document.getElementById("password").style.borderColor = "red";
-        document.getElementById("confirm-password").style.borderColor = 'red';
-    }   else {
-
-        nonMatchingPasswords.style.display = 'none';
-    }
-
-
-    // Log values in console (FOR TEST, DO NOT TOUCH)
-    console.log("First Name:", firstName);
-    console.log("Last Name:", lastName)
-    console.log("Email:", emailAddress);
-    console.log("Password:", password)
-
-    alert("Sign-up successful!")
-
+        // Display success message or handle further
+        alert("Sign-up successful!");
+        }
 
     });
 });

@@ -131,12 +131,13 @@
         color: #f64747;
         font-size: 1rem;
         margin-top: 10px;
+        display: none;
       }
 
       input[type="password"].error{
         border: 2px #f64747;
-        background-color: #fdd
-
+        background-color: #fdd;
+        box-shadow: 0 0 10px rgba(247, 123, 123, 0.7);
       }
 
 
