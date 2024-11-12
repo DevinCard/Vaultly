@@ -2,82 +2,104 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Signup.js is loaded!");
 
     const signupForm = document.getElementById("signup-form");
-    signupForm.addEventListener("submit", function (e) {
+    if (!signupForm) {
+        console.error("Signup form not found!");
+        return;
+    }
+
+    signupForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        let hasError = false;
-
-        document.querySelectorAll(".error-message").forEach((error) => {
-            error.textContent = "";
-            error.style.display = "none";
-        });
-
-        document.querySelectorAll("input").forEach((input) => {
-            input.setCustomValidity(""); 
-        });
-
-        const firstNameField = document.getElementById("first-name");
-        const firstNameError = document.getElementById('first-name-error');
-        const firstNameValue = firstNameField.value.trim();
+        const formData = {
+            firstName: document.getElementById("first-name").value.trim(),
+            lastName: document.getElementById("last-name").value.trim(),
+            email: document.getElementById("email-address").value.trim(),
+            password: document.getElementById("password").value,
+            confirmPassword: document.getElementById("confirm-password").value,
+        };
         
-        if (firstNameField.value.trim().length < 2) {
-            hasError = true;
-            firstNameError.textContent = "First name must be at least 2 characters.";
-            firstNameError.style.display = "block";
-            firstNameField.setCustomValidity("First name must be at least 2 characters.");
+        const submitButton = signupForm.querySelector("button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+
+        resetErrors();
+
+        let errors = {};
+
+        if (formData.firstName.length < 2) {
+            errors.firstName = "First name must be at least 2 characters.";
         }
 
-        const lastNameField = document.getElementById("last-name");
-        const lastNameError = document.getElementById("last-name-error");
-        if (lastNameField.value.trim().length < 2) {
-            hasError = true;
-            lastNameError.textContent = "Last name must be at least 2 characters.";
-            lastNameError.style.display = "block";
-            lastNameField.setCustomValidity("Last name must be at least 2 characters.");
+        if (formData.lastName.length < 2) {
+            errors.lastName = "Last name must be at least 2 characters.";
         }
 
-        const emailAddressField = document.getElementById("email-address");
-        const emailAddressError = document.getElementById("email-error");
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(emailAddressField.value.trim())) {
-            hasError = true;
-            emailAddressError.textContent = "Please enter a valid email address.";
-            emailAddressError.style.display = "block";
-            emailAddressField.setCustomValidity("Please enter a valid email address.");
+        if (!emailRegex.test(formData.email)) {
+            errors.email = "Please enter a valid email address.";
         }
 
-        const passwordField = document.getElementById("password");
-        const passwordError = document.getElementById("password-error");
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]+$/;
-        if (!passwordRegex.test(passwordField.value)) {
-            hasError = true;
-            passwordError.textContent = "Password must include one letter, one number, and one special character.";
-            passwordError.style.display = "block";
-            passwordField.setCustomValidity("Password must include one letter, one number, and one special character.");
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+        if (!passwordRegex.test(formData.password)) {
+            errors.password = "Password must include at least 8 characters, 1 number, and 1 special character.";
         }
 
-        // Confirm password validation
-        const confirmPasswordField = document.getElementById("confirm-password");
-        const confirmPasswordError = document.getElementById("confirm-password-error");
-        if (passwordField.value !== confirmPasswordField.value) {
-            hasError = true;
-            confirmPasswordError.textContent = "Passwords do not match.";
-            confirmPasswordError.style.display = "block";
-            confirmPasswordField.setCustomValidity("Passwords do not match.");
+        if (formData.password !== formData.confirmPassword) {
+            errors.confirmPassword = "Passwords must match.";
         }
 
-        // If there are errors, stop submission
-        if (hasError) {
+        if (Object.keys(errors).length > 0) {
+            for (const [field, errorMessage] of Object.entries(errors)) {
+                const errorElement = document.getElementById(`${field.split(/(?=[A-Z])/).join('-').toLowerCase()}-error`);
+                if (errorElement) {
+                    errorElement.textContent = errorMessage;
+                    errorElement.classList.add('show'); 
+                } else {
+                    console.error(`Error element for ${field}-error not found!`);
+                }
+            }
+
+            submitButton.disabled = false;
+            submitButton.textContent = "Sign Up";
             return;
         }
 
-        // Log values in console (for testing purposes, remove after final testing)
-        console.log("First Name:", firstNameField.value.trim());
-        console.log("Last Name:", lastNameField.value.trim());
-        console.log("Email:", emailAddressField.value.trim());
-        console.log("Password:", passwordField.value.trim());
+        try {
+            const response = await fetch('http://localhost:8080/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
 
-        // Display success message
-        alert("Sign-up successful!");
+            if (!response.ok) {
+                const data = await response.json();
+                if (data.errors) {
+                    for (const [field, errorMessage] of Object.entries(data.errors)) {
+                        const errorElement = document.getElementById(`${field.split(/(?=[A-Z])/).join('-').toLowerCase()}-error`);
+                        if (errorElement) {
+                            errorElement.textContent = errorMessage;
+                            errorElement.classList.add('show');
+                        }
+                    }
+                }
+                return;
+            }
+
+            alert("Sign-up successful!");
+        } catch (err) {
+            console.error("Error submitting the form:", err);
+            alert("An error occurred while submitting the form. Please try again.");
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Sign Up";
+        }
     });
+
+    function resetErrors() {
+        const errorElements = document.querySelectorAll('.error-message');
+        errorElements.forEach((errorElement) => {
+            errorElement.textContent = '';
+            errorElement.classList.remove('show'); 
+        });
+    }
 });
