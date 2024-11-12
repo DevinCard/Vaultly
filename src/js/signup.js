@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
             submitButton.textContent = "Sign Up";
             return;
         }
-
+        
         try {
             const response = await fetch('http://localhost:8080/signup', {
                 method: 'POST',
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 return;
             }
-
+        
             alert("Sign-up successful!");
         } catch (err) {
             console.error("Error submitting the form:", err);
