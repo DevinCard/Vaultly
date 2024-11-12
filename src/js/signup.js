@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             password: document.getElementById("password").value,
             confirmPassword: document.getElementById("confirm-password").value,
         };
-        
+
         const submitButton = signupForm.querySelector("button[type='submit']");
         submitButton.disabled = true;
         submitButton.textContent = "Submitting...";
@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!emailRegex.test(formData.email)) {
             errors.email = "Please enter a valid email address.";
         }
+
 
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
         if (!passwordRegex.test(formData.password)) {

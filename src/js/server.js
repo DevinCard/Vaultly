@@ -15,9 +15,12 @@ app.use('/js', express.static(path.join(__dirname, '../js')));
 app.use('/images', express.static(path.join(__dirname, '../images')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, "../resource/signup.html"));
+  res.sendFile(path.join(__dirname, "../../index.html"));
 });
 
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, "../resource/signup.html"));
+});
 
 app.post('/signup', (req, res) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
