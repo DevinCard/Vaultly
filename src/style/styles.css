@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 /* General Styles */
@@ -14,17 +13,16 @@ header {
   background-color: white;
   padding: 10px 20px;
   border-bottom: 1px solid #ddd;
-  position: sticky; /* Keeps header at the top when scrolling */
+  position: sticky;
   top: 0;
   z-index: 100;
 }
 
-/* Vaultly Text Logo (Button) */
 .text-logo {
   font-size: 1.8rem;
   font-weight: 600;
-  color: #78a864; /* Vaultly green */
-  margin-left: 80px; /* Adjusted to prevent overlap */
+  color: #78a864;
+  margin-left: 80px;
 }
 
 .text-logo button {
@@ -37,36 +35,35 @@ header {
 }
 
 .text-logo button:hover {
-  color: #9ad97f; /* Hover effect */
+  color: #9ad97f;
 }
 
-/* Fixed Logo Image (Clickable Button) */
 .logo button {
   background: none;
   border: none;
   cursor: pointer;
-  position: fixed; /* Keeps the logo in place while scrolling */
-  top: 10px; /* Adjusts distance from the top */
-  left: 10px; /* Adjusts distance from the left */
+  position: fixed;
+  top: 10px;
+  left: 10px;
   z-index: 1000;
 }
 
 .logo img {
-  height: 50px; /* Increased size */
+  height: 50px;
   width: auto;
 }
 
 .nav-links {
   display: flex;
   justify-content: center;
-  flex: 1; /* Push links to center */
+  flex: 1;
 }
 
 .nav-links a {
   text-decoration: none;
   color: black;
   margin: 0 25px;
-  font-size: 1.2rem; /* Increased font size */
+  font-size: 1.2rem;
   font-weight: 600;
   transition: color 0.3s ease;
 }
@@ -75,68 +72,82 @@ header {
   color: #78a864;
 }
 
-/* Authentication Buttons */
 .auth-buttons {
   display: flex;
   gap: 10px;
 }
 
-.auth-buttons button {
+.auth-buttons .button {
+  position: relative;
+  display: inline-block;
   font-weight: 600;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  border: none;
+  overflow: hidden;
 }
 
 .auth-buttons .login-btn {
   background-color: white;
   color: #78a864;
   border: 2px solid #78a864;
-  padding: 5px 15px;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease, color 0.3s ease;
-}
-
-.auth-buttons .login-btn:hover {
-  box-shadow: 0px 0px 15px rgba(120, 168, 100, 0.7);
 }
 
 .auth-buttons .signup-btn {
   background-color: #78a864;
   color: white;
-  border: none;
-  padding: 5px 15px;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid #78a864;
   border-radius: 5px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.button:hover::before {
+  transform: scale(1);
+}
+
+.button-text {
+  position: relative;
+  z-index: 1;
 }
 
 .auth-buttons .signup-btn:hover {
-  box-shadow: 0px 0px 15px rgba(120, 168, 100, 0.7);
   background-color: #9ad97f;
 }
 
-/* Bottom Section */
 .bottom-section {
   display: flex;
   justify-content: center;
-  align-items: center; /* Aligns everything in the center vertically */
+  align-items: center;
   padding: 30px;
   background-color: #f9f9f9;
-  min-height: 70vh; /* Adjusted height */
-  text-align: center; /* Center text */
+  min-height: 70vh;
+  text-align: center;
 }
 
 .slogan-container {
   display: flex;
-  flex-direction: column; /* Stack the slogan and button vertically */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 50%; /* Restrict width to allow space for image */
+  max-width: 50%;
 }
 
 .slogan-container h1 {
-  font-size: 5rem; /* Increased slogan size */
+  font-size: 5rem;
   font-weight: 600;
   color: black;
   margin: 0;
@@ -147,24 +158,21 @@ header {
   display: inline-block;
   background-color: #9ad97f;
   color: white;
-  font-size: 1.2rem; /* Original button size */
+  font-size: 1.2rem;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
-  padding: 15px 40px; /* Original padding */
+  padding: 15px 40px;
   border-radius: 50px;
   cursor: pointer;
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
-  margin-top: 20px; /* Space between slogan and button */
 }
 
 .slogan-container .get-started-btn:hover {
-  box-shadow: 0px 0px 15px rgba(120, 168, 100, 0.7);
   background-color: #78a864;
 }
 
 .image-container {
-  max-width: 50%; /* Restrict width to allow space for text */
+  max-width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -173,58 +181,36 @@ header {
 .image-container img {
   max-width: 100%;
   height: auto;
-  object-fit: contain;
 }
 
-/* Mission Section */
 .mission-section {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 30px;
   background-color: #f2f2f2;
-  min-height: 70vh; /* Adjusted height */
-}
-
-.mission-left {
-  max-width: 50%;
 }
 
 .mission-left h2 {
-  font-size: 3rem; /* Increased font size */
+  font-size: 3rem;
   font-weight: 600;
   color: #78a864;
-  margin-bottom: 20px;
 }
 
 .mission-right {
   max-width: 50%;
-  font-size: 1.2rem; /* Increased font size */
+  font-size: 1.2rem;
   color: black;
   line-height: 1.8;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
-  .bottom-section,
-  .mission-section {
+  .bottom-section, .mission-section {
     flex-direction: column;
     text-align: center;
-    min-height: auto; /* Adjust for smaller screens */
-  }
-
-  .mission-left,
-  .mission-right {
-    max-width: 100%;
   }
 
   .slogan-container h1 {
-    font-size: 3rem; /* Adjusted for smaller screens */
-  }
-
-  .slogan-container .get-started-btn {
-    font-size: 1rem;
-    padding: 10px 30px;
+    font-size: 3rem;
   }
 
   .image-container img {
