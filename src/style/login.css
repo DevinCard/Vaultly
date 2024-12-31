@@ -31,11 +31,9 @@ header {
   color: #78a864; /* Updated to use the specified color */
   text-decoration: none; /* Removes underlining */
   cursor: pointer; /* Makes it clear it's clickable */
+  transition: text-color 0.3s ease;
 }
 
-.text-logo:hover {
-  color: #9ad97f; /* Lighter green on hover */
-}
 
 /* Fixed Logo Image */
 .logo img {
@@ -83,7 +81,6 @@ header {
   width: 400px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
-  animation: glow 1.5s ease-in-out infinite;
 }
 
 /* Title inside the login box */
