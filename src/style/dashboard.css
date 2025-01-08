@@ -1,0 +1,133 @@
+/* General Reset */
+body, h1, button, ul, li, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    height: 70px;
+}
+
+/* Centered Title with Logo */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #78a864;
+    text-align: center;
+}
+
+/* Sign-Out Button */
+.signout-btn {
+    background-color: #9ad97f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.signout-btn:hover {
+    background-color: #86c76e;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: calc(100vh - 70px);
+    background-color: #f8f9fa;
+    border-right: 1px solid #e0e0e0;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    z-index: 900;
+    overflow-y: auto;
+    padding-top: 20px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    margin: 15px 0;
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 5px;
+}
+
+.sidebar-menu a.active,
+.sidebar-menu a:hover {
+    background-color: #9ad97f;
+    color: white;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align content */
+    gap: 20px; /* Spacing between sections */
+    min-height: calc(100vh - 80px); /* Ensure full height of the viewport minus header */
+}
+
+/* Top Rectangle (Wider) */
+.dash-info-top {
+    background-color: #78a864;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 200px; /* Wider rectangle */
+    width: 90%; /* Leaves some white space on the sides */
+    margin-bottom: 20px; /* Space between top and bottom sections */
+}
+
+/* Bottom Two Rectangles (Taller) */
+.bottom-sections {
+    display: flex;
+    gap: 20px; /* Space between the two bottom sections */
+    width: 90%; /* Align with the top rectangle */
+    justify-content: space-between;
+}
+
+.bottom-sections .dash-info {
+    background-color: #78a864;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 250px; /* Taller rectangles */
+    width: calc(50% - 10px); /* Two equal sections side by side */
+}
