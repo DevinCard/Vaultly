@@ -132,6 +132,7 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+/* New Transaction Button */
 .new-transaction-btn {
     background-color: #9ad97f;
     color: white;
@@ -141,6 +142,10 @@ body {
     cursor: pointer;
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .new-transaction-btn:hover {
@@ -155,17 +160,23 @@ body {
     justify-content: center;
 }
 
-/* Green Boxes */
+/* Green Box */
 .transaction-box {
     background-color: #78a864;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: calc(30% - 20px);
-    height: 150px;
+    position: relative;
+    margin-left: 0;
+    width: 40%;
+    height: 200px;
 }
 
 /* Longer Green Box */
 .transaction-box.longer-box {
-    width: 65%; /* Longer box width */
-    height: 150px;
+    width: 40%;
+    height: 700px;
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }

@@ -1,5 +1,5 @@
 /* General Reset */
-body, h1, button, ul, li, a {
+body, h1, button, ul, li, a, div {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,6 +7,7 @@ body, h1, button, ul, li, a {
 
 body {
     font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
 }
 
 /* Header Styles */
@@ -22,7 +23,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Ensure the header is always above other elements */
+    z-index: 1000; /* Ensure the header is always on top */
 }
 
 /* Centered Title with Logo */
@@ -68,9 +69,9 @@ body {
     background-color: #f8f9fa;
     border-right: 1px solid #e0e0e0;
     position: fixed;
-    top: 70px; /* Places sidebar just below the header */
+    top: 70px; /* Aligns the sidebar below the header */
     left: 0;
-    z-index: 900; /* Ensure it stays below the header */
+    z-index: 900; /* Ensures it stays below the header */
     overflow-y: auto;
     padding-top: 20px;
 }
@@ -106,34 +107,63 @@ body {
     padding: 80px 20px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
     align-items: center; /* Center align content */
-    gap: 20px; /* Spacing between sections */
     min-height: calc(100vh - 80px); /* Ensure full height of the viewport minus header */
 }
 
-/* Top Rectangle (Wider) */
-.dash-info-top {
+/* Top Box (Upcoming Purchases) */
+.top-box {
     background-color: #78a864;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    height: 200px; /* Wider rectangle */
-    width: 90%; /* Leaves some white space on the sides */
-    margin-top: 4%;
-    margin-bottom: 20px; /* Space between top and bottom sections */
+    margin-top: 5%;
+    width: 90%; /* Full width with padding */
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
 }
 
-/* Bottom Two Rectangles (Taller) */
+/* Bottom Section */
 .bottom-sections {
     display: flex;
-    gap: 20px; /* Space between the two bottom sections */
-    width: 90%; /* Align with the top rectangle */
-    justify-content: space-between;
+    gap: 20px;
+    width: 90%;
 }
 
-.bottom-sections .dash-info {
-    background-color: #78a864;
+/* Bottom Left (Previous Purchases) */
+.bottom-left {
+    background-color: #86c76e;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    height: 250px; /* Taller rectangles */
-    width: calc(50% - 10px); /* Two equal sections side by side */
+    width: 50%; /* Takes half of the bottom section */
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+}
+
+/* Bottom Right (Projected Budget Graph) */
+.bottom-right {
+    background-color: #9ad97f;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Takes half of the bottom section */
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    text-align: center;
 }

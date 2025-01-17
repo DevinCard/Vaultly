@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transactions</title>
-    <link rel="stylesheet" href="../style/transaction.css" />
+    <title>Categories</title>
+    <link rel="stylesheet" href="../style/Categories.css" />
   </head>
   <body>
     <!-- Header -->
@@ -20,27 +20,28 @@
     <div class="sidebar">
       <ul class="sidebar-menu">
         <li><a href="dashboard.html">Dashboard</a></li>
-        <li>
-          <a href="../resource/transaction.html" class="active">Transactions</a>
-        </li>
+        <li><a href="../resource/transaction.html">Transactions</a></li>
         <li><a href="../resource/summaries.html">Available Summaries</a></li>
         <li><a href="../resource/goals.html">Goals</a></li>
         <li><a href="../resource/Rpurchases.html">Reoccurring Purchases</a></li>
-        <li><a href="../resource/Categories.html">Categories</a></li>
+        <li>
+          <a href="../resource/Categories.html" class="active">Categories</a>
+        </li>
       </ul>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-      <!-- Green Boxes -->
-      <div class="transaction-list">
-        <!-- Longer box with new transaction button -->
-        <div class="transaction-box longer-box">
-          <button class="new-transaction-btn">New Transaction</button>
-        </div>
+      <!-- Top Section -->
+      <div class="top-section">
+        <div class="category-box top-left"></div>
+        <div class="category-box top-right"></div>
+      </div>
 
-        <!-- Regular-sized boxes -->
-        <div class="transaction-box"></div>
+      <!-- Bottom Section -->
+      <div class="bottom-section">
+        <div class="category-box bottom-left"></div>
+        <div class="category-box bottom-right"></div>
       </div>
     </div>
   </body>
